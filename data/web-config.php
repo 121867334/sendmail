@@ -1,5 +1,5 @@
 <?php
-Fn::$config['web_name'] = '办公运营支撑平台';
+Fn::$config['web_name'] = '办公平台';
 Fn::$config['web_url'] = 'http://'.$_SERVER['HTTP_HOST'].'/';
 Fn::$config['web_path'] = '/';
 Fn::$config['img_url'] = '';

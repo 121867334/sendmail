@@ -54,7 +54,7 @@ class Main_Controller extends Base_Controller {
 		Session::set('tm',$tm);
 		$tk = Ext_String::passHash(Fn::$config['encrypt_key'].$tm);
 		$this->output->set('tk',$tk);
-		$this->output->display('login.html');
+		$this->output->display('../new/index.html');
 	}
 	public function logout()
 	{
