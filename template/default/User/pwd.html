@@ -1,0 +1,51 @@
+<!--{include header.html}-->
+<script type="text/javascript">
+function checkFrm()
+{
+	var old_pwd = $('#old_pwd').val();
+	var new_pwd = $('#new_pwd').val();
+	var new_pwd_2 = $('#new_pwd_2').val();
+	if(old_pwd == '')
+	{
+		alert('请填写旧密码');
+		$('#old_pwd').focus();
+		return false;
+	}
+	if(new_pwd == '')
+	{
+		alert('请填写新密码');
+		$('#new_pwd').focus();
+		return false;
+	}
+	if(new_pwd != new_pwd_2)
+	{
+		alert('两次填写新密码不一致');
+		$('#new_pwd_2').focus();
+		return false;
+	}
+	return true;
+}
+</script>
+<form action="index.php?c=User&a=pwd" method="post" onsubmit="return checkFrm()">
+<table width="100%" cellpadding="3" cellspacing="0" class="table">
+	<tr>
+		<th width="10%" nowrap="nowrap">旧密码：</th>
+		<td><input type="password" name="old_pwd" id="old_pwd" class="txt_1" value="" /></td>
+	</tr>
+	<tr>
+		<th width="10%" nowrap="nowrap">新密码：</th>
+		<td><input type="password" name="new_pwd" id="new_pwd" class="txt_1" value="" /></td>
+	</tr>
+	<tr>
+		<th width="10%" nowrap="nowrap">重复新密码：</th>
+		<td><input type="password" name="new_pwd_2" id="new_pwd_2" class="txt_1" value="" /></td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<input type="hidden" name="act" id="act" value="save" />	
+			<input type="submit" value="修改" class="btn" />
+		</td>
+	</tr>
+</table>
+</form>
+<!--{include footer.html}-->

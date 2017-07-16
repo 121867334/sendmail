@@ -1,0 +1,151 @@
+<!--{include header.html}-->
+<script type="text/javascript" src="{$web_path}js/My97DatePicker/WdatePicker.js"></script>
+<script type="text/javascript">
+$(document).ready(function(e) {
+	<!--{if $user.use_id}-->
+	changeStatus();
+	changePermanent();
+	<!--{/if}-->
+});
+function checkFrm(obj)
+{
+	var use_name = $('#use_name').val();
+	var use_no = $('#use_no').val();
+	if(use_name == '')
+	{
+		alert('请填写职员姓名');
+		$('#use_name').focus();
+		return false;
+	}
+	if(use_no == '')
+	{
+		if(!confirm('您没有填写工号，确定由系统生成吗？'))
+		{
+			$('#use_no').focus();
+			return false;
+		}
+	}
+	$('#add_frm').submit();
+	$(obj).attr('disabled',true);
+}
+function setUser(use_id,use_name)
+{
+	$('#use_leader').val(use_id);
+	$('#use_leader_name').html(use_name);
+}
+function changePermanent()
+{
+	if($('.permanent_cls:checked').val() == '1')
+	{
+		$('.permanent_tr_cls').show();
+	}
+	else
+	{
+		$('.permanent_tr_cls').hide();
+	}
+}
+function changeStatus()
+{
+	if($('.use_status_cls:checked').val() == '0')
+	{
+		$('.leave_tr_cls').show();
+	}
+	else
+	{
+		$('.leave_tr_cls').hide();
+	}
+}
+</script>
+<form action="index.php?c=User&a=add" method="post" id="add_frm">
+	<table width="100%" cellpadding="3" cellspacing="0" class="table">
+		<tr>
+			<td width="10%" align="left" nowrap="nowrap">部门：</td>
+			<td>{$dep_select}</td>
+		</tr>
+		<tr>
+			<td width="10%" align="left" nowrap="nowrap">姓名：</td>
+			<td><input type="text" name="data[use_name]" id="use_name" class="txt_1" value="{$user.use_name}" />
+			<span class="red">*</span></td>
+		</tr>
+		<tr>
+			<td width="10%" align="left" nowrap="nowrap">工号：</td>
+			<td><input type="text" name="data[use_no]" id="use_no" class="txt_1" value="{$user.use_no}" />（注：工号为系统登录账号，如未填写，则由系统自动生成。）</td>
+		</tr>
+		<tr>
+			<td width="10%" align="left" nowrap="nowrap">登录密码：</td>
+			<td><input type="text" name="data[use_pwd]" id="use_pwd" class="txt_1" value="" />{if $user.use_id}（注：不修改请留空）{else}（注：不填写则默认密码与工号一致）{/if}</td>
+		</tr>
+		<tr>
+			<td width="10%" align="left" nowrap="nowrap">职位：</td>
+			<td><input type="text" name="data[use_position]" id="use_position" class="txt_1" value="{$user.use_position}" /></td>
+		</tr>
+		<tr>
+			<td width="10%" align="left" nowrap="nowrap">权限角色：</td>
+			<td>
+				{if $role_list}
+				{foreach $role_list as $v}
+				<label style="display:inline-block;"><input type="checkbox" name="data[use_info][rol_id][]" id="use_info_rol_id" value="{$v.rol_id}" class="rol_id_cls" {if in_array($v.rol_id,$user.use_info.rol_id)}checked{/if} />{$v.rol_name}</label>
+				{/foreach}
+				{/if}
+			</td>
+		</tr>
+		<tr>
+			<td width="10%" align="left" nowrap="nowrap">状态：</td>
+			<td>
+				<label><input type="radio" name="data[use_status]" id="use_status" value="0" class="use_status_cls" {if $user.use_status == '0'}checked{/if} onclick="changeStatus()" />离职</label>
+				<label><input type="radio" name="data[use_status]" id="use_status" value="1" class="use_status_cls" {if !$user.use_id || $user.use_status == 1}checked{/if} onclick="changeStatus()" />在职</label>
+				&nbsp;
+				<span class="leave_tr_cls hide">离职日期：<input type="text" name="data[use_leave_date]" id="use_leave_date" class="Wdate txt_1" value="{if $user.use_leave_date != '0000-00-00'}{$user.use_leave_date}{/if}" onFocus="WdatePicker()" /></span>
+			</td>
+		</tr>
+		<tr>
+			<td width="10%" align="left" nowrap="nowrap">是否转正：</td>
+			<td>
+				<label><input type="radio" name="data[use_permanent]" id="use_permanent" value="0" class="permanent_cls" {if $user.use_permanent == 0}checked{/if} onclick="changePermanent()" />否</label>
+				<label><input type="radio" name="data[use_permanent]" id="use_permanent" value="1" class="permanent_cls" {if $user.use_permanent == 1}checked{/if} onclick="changePermanent()" />是</label>
+				&nbsp;
+				<span class="permanent_tr_cls hide">转正日期：<input type="text" name="data[use_permanent_date]" id="use_permanent_date" class="Wdate txt_1" value="{if $user.use_permanent_date != '0000-00-00'}{$user.use_permanent_date}{/if}" onFocus="WdatePicker()" /></span>
+			</td>
+		</tr>
+		<tr>
+			<td width="10%" align="left" nowrap="nowrap">性别：</td>
+			<td>
+				<label><input type="radio" name="data[use_sex]" id="use_sex" value="1" class="use_sex_cls" {if $user.use_sex == 1}checked{/if} />男</label>
+				<label><input type="radio" name="data[use_sex]" id="use_sex" value="2" class="use_sex_cls" {if $user.use_sex == 2}checked{/if} />女</label>
+			</td>
+		</tr>
+		<tr>
+			<td width="10%" align="left" nowrap="nowrap">出生日期：</td>
+			<td><input type="text" name="data[use_birthday]" id="use_birthday" class="Wdate txt_1" value="{if $user.use_birthday != '0000-00-00'}{$user.use_birthday}{/if}" onclick="WdatePicker()" /></td>
+		</tr>
+		<tr>
+			<td width="10%" align="left" nowrap="nowrap">电话：</td>
+			<td><input type="text" name="data[use_tel]" id="use_tel" class="txt_1" value="{$user.use_tel}" /></td>
+		</tr>
+		<tr>
+			<td width="10%" align="left" nowrap="nowrap">手机：</td>
+			<td><input type="text" name="data[use_mobile]" id="use_mobile" class="txt_1" value="{$user.use_mobile}" /></td>
+		</tr>
+		<tr>
+			<td width="10%" align="left" nowrap="nowrap">Email：</td>
+			<td><input type="text" name="data[use_email]" id="use_email" class="txt_1" value="{$user.use_email}" /></td>
+		</tr>
+		<tr>
+			<td width="10%" align="left" nowrap="nowrap">地址：</td>
+			<td><input type="text" name="data[use_addr]" id="use_addr" class="txt_1" value="{$user.use_addr}" /></td>
+		</tr>
+		<tr>
+			<td width="10%" align="left" nowrap="nowrap">备注：</td>
+			<td><textarea name="data[use_info][remarks]" id="use_info_remarks" class="txtarea_1">{$user.use_info.remarks}</textarea></td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<input type="hidden" name="use_id" id="use_id" value="{$user.use_id}" />
+				<input type="hidden" name="act" id="act" value="save" />
+				<input type="button" value="提交" class="btn" onclick="checkFrm(this)" />
+				<input type="reset" value="重置" class="btn" />
+			</td>
+		</tr>
+	</table>
+</form>
+<!--{include footer.html}-->

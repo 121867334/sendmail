@@ -1,0 +1,25 @@
+@charset "utf-8";
+/* CSS Document */
+/*全局定义*/
+body {font: 100%/1.4 Verdana, Arial, Helvetica, sans-serif;background-color: #FFF;margin: 0;padding: 0;color: #000; font-size:12px;}
+ul, ol, dl, form{padding: 0;margin: 0;}
+h1, h2, h3, h4, h5, h6, p {margin: 0;padding:0;}
+a img {border: none;}
+a:link {color: #000;text-decoration: none;}
+a:visited {text-decoration: none;color: #000;}
+a:hover, a:active, a:focus {text-decoration:underline;}
+header, section, footer, aside, article, figure {display: block;}
+
+#header {width:auto; height:30px; padding-top:7px; background:url(images/top_gb.gif);}
+#header .top_title{color:#3E6AA7; padding-left:10px;}
+#header .top_type_home{float:right; color:#6C7079; padding-right:10px;}
+#header .top_type_out{float:right; color:#6C7079; padding-right:10px;}
+
+.left_nav{width:180px; color:#17418B;}
+.menu_list{margin-bottom:5px;}
+.nav_left_a{height:25px; line-height:25px; border:1px solid #6593CF; border-left:0px; border-right:0px; padding:0px 5px; background:url(images/left_menu_icon.gif) repeat-x; cursor:pointer;}
+.nav_left_a img{padding-top:7px; margin-right:5px;}
+.nav_left_ab{padding-top:5px; display:none;}
+.nav_left_ab li{padding:0px 5px 0px 11px; height:25px; line-height:25px;}
+.nav_left_ab li:hover{background-color:#FFF;}
+.nav_left_ab li a{color:#17418B;}

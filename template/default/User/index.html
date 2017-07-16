@@ -1,0 +1,45 @@
+<!--{include header.html}-->
+<script type="text/javascript" src="{$web_path}js/My97DatePicker/WdatePicker.js"></script>
+	<form action="" method="get" id="search_frm">
+		<fieldset class="search">
+			<legend>搜索</legend>
+			<input type="hidden" name="c" id="c" value="User" />
+			<input type="hidden" name="a" id="a" value="index" />
+			工号/姓名：<input type="text" name="use_key" id="use_key" class="txt_1" value="{$use_key}" />&nbsp;
+			<select name="use_status" id="use_status">
+				<option value="">状态</option>
+				<option value="1" {if $use_status == '1'}selected{/if}>在职</option>
+				<option value="0" {if $use_status == '0'}selected{/if}>离职</option>
+			</select>&nbsp;
+			{$dep_select}&nbsp;
+			入职时间：<input type="text" name="use_entry_date1" id="use_entry_date1" class="Wdate txt_1" value="{$use_entry_date1}" onFocus="WdatePicker({maxDate:'#F{$dp.$D(\'use_entry_date2\',{d:0});}'})" /> ~ <input type="text" name="use_entry_date2" id="use_entry_date2" class="Wdate txt_1" value="{$use_entry_date2}" onFocus="WdatePicker({minDate:'#F{$dp.$D(\'use_entry_date1\',{d:0});}'})" />&nbsp;
+			<input type="submit" value="搜索" />
+		</fieldset>
+	</form>
+	<table width="100%" cellpadding="3" cellspacing="0" class="table">
+		<tr>
+			<th align="left">名称</th>
+			<th align="left">工号</th>
+			<th align="left">部门</th>
+			<th align="left">入职时间</th>
+			<th align="left">状态</th>
+			<th align="left">操作</th>
+		</tr>
+		<!--{if $list}-->
+		<!--{foreach $list as $val}-->
+		<tr>
+			<td align="left">{$val.use_name}</td>
+			<td align="left">{$val.use_no}</td>
+			<td align="left">{$val.dep_name}</td>
+			<td align="left">{$val.use_entry_date}</td>
+			<td align="left">{if $val.use_status == 1}在职{elseif $val.use_status == 0}离职{/if}</td>
+			<td align="left">
+				<a href="index.php?c=User&a=add&use_id={$val.use_id}">修改</a> | 
+				<a href="index.php?c=Permission&a=set&use_id={$val.use_id}">权限设置</a>
+			</td>
+		</tr>
+		<!--{/foreach}-->
+		<!--{/if}-->
+	</table>
+	<div class="page"><span>共&nbsp;{$totalNum}&nbsp;条记录，当前&nbsp;{$page}/{$totalPage}</span>{$pageHtml}</div>
+<!--{include footer.html}-->
