@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2017 年 06 月 12 日 16:22
+-- 生成日期: 2017 年 08 月 14 日 18:08
 -- 服务器版本: 5.5.40
--- PHP 版本: 5.3.29
+-- PHP 版本: 5.2.17
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `tra_config` (
 --
 
 INSERT INTO `tra_config` (`con_id`, `em_host`, `em_port`, `em_user`, `em_pwd`, `from_name`) VALUES
-(1, '', '25', '', '', '');
+(1, 'c2.icoremail.net', '25', 'zbx@huyi.cn', 'lcx^zbx2009', 'test');
 
 -- --------------------------------------------------------
 
@@ -68,36 +68,56 @@ CREATE TABLE IF NOT EXISTS `tra_email` (
   KEY `key_table` (`key_table`),
   KEY `key_id` (`key_id`),
   KEY `use_id` (`use_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
+--
+-- 转存表中的数据 `tra_email`
+--
+
+INSERT INTO `tra_email` (`em_id`, `key_id`, `key_table`, `em_to`, `em_cc`, `em_bcc`, `em_from`, `em_subject`, `em_body`, `em_attach`, `em_time`, `em_status`, `em_result`, `use_id`) VALUES
+(8, 2, 'tra_record', '121867334@qq.com', '', '', 'zbx@huyi.cn', 'tetttt', '<p>		asfdsafds\r\nasdfdsaf		</p>', '', '2017-07-16 18:56:52', 0, 'Language string failed to load: connect_host', 1),
+(9, 2, 'tra_record', '121867334@qq.com', '', '', 'zbx@huyi.cn', 'test', '<p>		asfdsafds\r\nasdfdsaf		</p>', '', '2017-07-16 18:58:47', 1, '', 1);
+
+-- --------------------------------------------------------
 
 --
 -- 表的结构 `tra_record`
 --
 
 CREATE TABLE IF NOT EXISTS `tra_record` (
-  `re_id` int(11) NOT NULL AUTO_INCREMENT,
-  `re_name` varchar(255) NOT NULL,
-  `re_contact` varchar(255) NOT NULL,
-  `re_tel` varchar(255) NOT NULL,
-  `re_fax` varchar(255) NOT NULL,
-  `re_email` varchar(255) NOT NULL,
-  `re_addr` varchar(255) NOT NULL,
-  `re_postcode` varchar(10) NOT NULL,
-  `re_date` date NOT NULL,
-  `re_remark` text NOT NULL,
-  `re_status` tinyint(1) NOT NULL DEFAULT '1',
-  `re_time` datetime NOT NULL,
+  `re_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '客人姓名',
+  `re_confNumber` varchar(255) NOT NULL COMMENT '订单号',
+  `re_customer` varchar(255) NOT NULL COMMENT '客人姓名',
+  `re_chnTel` varchar(255) NOT NULL COMMENT '中国电话号码',
+  `re_mlyTel` varchar(255) NOT NULL COMMENT '马来西亚电话号码',
+  `re_email` varchar(255) NOT NULL COMMENT '邮箱',
+  `re_QQ` varchar(255) NOT NULL COMMENT 'QQ或者微信',
+  `re_arrivalPeople` varchar(10) NOT NULL COMMENT '到达人数',
+  `re_arrivalPlace` varchar(255) NOT NULL COMMENT '到达地方',
+  `re_arrivalFlight` varchar(255) NOT NULL COMMENT '到达航班',
+  `re_arrivalTime` datetime NOT NULL COMMENT '到达时间',
+  `re_airportService` varchar(255) NOT NULL COMMENT '机场接机服务',
+  `re_spnHotel` varchar(255) NOT NULL COMMENT '仙本那酒店',
+  `re_toIslandTime` datetime NOT NULL COMMENT '上岛时间',
+  `re_leaveIslandTime` datetime NOT NULL COMMENT '离岛时间',
+  `re_departureTime` datetime NOT NULL COMMENT '离开仙本那时间',
+  `re_toAirpostService` varchar(255) NOT NULL COMMENT '返程送机服务',
+  `re_departureFlight` varchar(255) NOT NULL COMMENT '返程航班号',
+  `re_remark` text NOT NULL COMMENT '备注说明',
+  `re_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态 0无效 1有效默认',
+  `re_time` datetime NOT NULL COMMENT '操作时间',
   PRIMARY KEY (`re_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- 转存表中的数据 `tra_record`
 --
 
-INSERT INTO `tra_record` (`re_id`, `re_name`, `re_contact`, `re_tel`, `re_fax`, `re_email`, `re_addr`, `re_postcode`, `re_date`, `re_remark`, `re_status`, `re_time`) VALUES
-(1, 'test1', 'test2', 'test3', 'test4', '164413344@qq.com', 'test6', 'test7', '2017-06-13', 'testtest', 1, '2017-06-12 15:46:36'),
-(2, 'ceshi', 'ceshi2', 'ceshi3', 'ceshi4', 'huiwen.zheng@8hy.hk', 'ceshi6', 'ceshi7', '2017-06-13', 'ceshiceshi', 1, '2017-06-12 16:13:59');
+INSERT INTO `tra_record` (`re_id`, `re_confNumber`, `re_customer`, `re_chnTel`, `re_mlyTel`, `re_email`, `re_QQ`, `re_arrivalPeople`, `re_arrivalPlace`, `re_arrivalFlight`, `re_arrivalTime`, `re_airportService`, `re_spnHotel`, `re_toIslandTime`, `re_leaveIslandTime`, `re_departureTime`, `re_toAirpostService`, `re_departureFlight`, `re_remark`, `re_status`, `re_time`) VALUES
+(1, '1030', 'Zhang San', '', ' ', '121867334@qq.com', '旺旺：23y 火星妹', '3大', '斗湖', 'AK6266', '2017-06-26 16:45:00', 'Yes', 'Mabul Inn', '2017-04-27 08:00:00', '2017-04-27 16:00:00', '2017-04-28 18:00:00', 'Yes', 'AK6265', '', 1, '2017-06-12 15:46:36'),
+(2, '1030', 'Zhang San', '', '', '121867334@qq.com', '', '', '', '', '0000-00-00 00:00:00', '', '', '2017-04-28 08:30:00', '2017-04-28 16:00:00', '0000-00-00 00:00:00', '', '', '', 1, '2017-06-12 16:13:59'),
+(3, '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '', 1, '0000-00-00 00:00:00'),
+(4, '1', '张保星', '18028089921', '+2893247923', 'zbx@huyi.cn', '121867334', '3', '仙本那', 'GA18923', '2017-08-11 00:00:00', '有', '仙本那国际大酒店', '2017-08-12 00:00:00', '2017-08-13 00:00:00', '2017-08-14 00:00:00', '有没有', 'AA128933', 'test', 1, '2017-08-14 17:16:46');
 
 -- --------------------------------------------------------
 

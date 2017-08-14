@@ -16,44 +16,86 @@ function checkFrm(obj)
 </script>
 <form action="index.php?c=Travel&a=add" method="post" id="add_frm">
 	<table width="100%" cellpadding="3" cellspacing="0" class="table">
-		<tr>
-			<td width="10%" align="left" nowrap="nowrap">名称：</td>
-			<td><input type="text" name="data[re_name]" id="re_name" class="txt_1" value="{$record.re_name}" />
+    	<tr>
+			<td width="10%" align="left" nowrap="nowrap">订单号：</td>
+			<td><input type="text" name="data[re_confNumber]" id="re_confNumber" class="txt_1" value="{$record.re_confNumber}" />
 			<span class="red">*</span></td>
 		</tr>
 		<tr>
-			<td width="10%" align="left" nowrap="nowrap">联系人：</td>
-			<td><input type="text" name="data[re_contact]" id="re_contact" class="txt_1" value="{$record.re_contact}" />
+			<td width="10%" align="left" nowrap="nowrap">客人姓名：</td>
+			<td><input type="text" name="data[re_customer]" id="re_customer" class="txt_1" value="{$record.re_customer}" />
+			<span class="red">*</span></td>
+		</tr>
+		<tr>
+			<td width="10%" align="left" nowrap="nowrap">中国电话：</td>
+			<td><input type="text" name="data[re_chnTel]" id="re_chnTel" class="txt_1" value="{$record.re_chnTel}" />
 			</td>
 		</tr>
 		<tr>
-			<td width="10%" align="left" nowrap="nowrap">电话：</td>
-			<td><input type="text" name="data[re_tel]" id="re_tel" class="txt_1" value="{$record.re_tel}" />
+			<td width="10%" align="left" nowrap="nowrap">马来电话：</td>
+			<td><input type="text" name="data[re_mlyTel]" id="re_mlyTel" class="txt_1" value="{$record.re_mlyTel}" />
 			</td>
 		</tr>
 		<tr>
-			<td width="10%" align="left" nowrap="nowrap">传真：</td>
-			<td><input type="text" name="data[re_fax]" id="re_fax" class="txt_1" value="{$record.re_fax}" />
-			</td>
-		</tr>
-		<tr>
-			<td width="10%" align="left" nowrap="nowrap">Email：</td>
+			<td width="10%" align="left" nowrap="nowrap">电子邮箱：</td>
 			<td><input type="text" name="data[re_email]" id="re_email" class="txt_1" value="{$record.re_email}" />
 			</td>
 		</tr>
 		<tr>
-			<td width="10%" align="left" nowrap="nowrap">地址：</td>
-			<td><input type="text" name="data[re_addr]" id="re_addr" class="txt_1" value="{$record.re_addr}" />
+			<td width="10%" align="left" nowrap="nowrap">QQ或微信：</td>
+			<td><input type="text" name="data[re_QQ]" id="re_QQ" class="txt_1" value="{$record.re_QQ}" />
 			</td>
 		</tr>
 		<tr>
-			<td width="10%" align="left" nowrap="nowrap">邮编：</td>
-			<td><input type="text" name="data[re_postcode]" id="re_postcode" class="txt_1" value="{$record.re_postcode}" />
+			<td width="10%" align="left" nowrap="nowrap">到达人数：</td>
+			<td><input type="text" name="data[re_arrivalPeople]" id="re_arrivalPeople" class="txt_1" value="{$record.re_arrivalPeople}" />
 			</td>
 		</tr>
 		<tr>
-			<td width="10%" align="left" nowrap="nowrap">日期：</td>
-			<td><input type="text" name="data[re_date]" id="re_date" class="Wdate" value="{$record.re_date}" onclick="WdatePicker()" /></td>
+			<td width="10%" align="left" nowrap="nowrap">到达地方：</td>
+			<td><input type="text" name="data[re_arrivalPlace]" id="re_arrivalPlace" class="txt_1" value="{$record.re_arrivalPlace}" />
+			</td>
+		</tr>
+		<tr>
+			<td width="10%" align="left" nowrap="nowrap">出发航班号：</td>
+			<td><input type="text" name="data[re_arrivalFlight]" id="re_arrivalFlight" class="txt_1" value="{$record.re_arrivalFlight}" />
+			</td>
+		</tr>
+		<tr>
+			<td width="10%" align="left" nowrap="nowrap">到达时间：</td>
+			<td><input type="text" name="data[re_arrivalTime]" id="re_arrivalTime" class="Wdate" value="{$record.re_arrivalTime}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" /></td>
+		</tr>
+		<tr>
+			<td width="10%" align="left" nowrap="nowrap">接机服务：</td>
+			<td><input type="text" name="data[re_airportService]" id="re_airportService" class="txt_1" value="{$record.re_airportService}" />
+			</td>
+		</tr>
+		<tr>
+			<td width="10%" align="left" nowrap="nowrap">仙本那酒店：</td>
+			<td><input type="text" name="data[re_spnHotel]" id="re_spnHotel" class="txt_1" value="{$record.re_spnHotel}" />
+			</td>
+		</tr>
+		<tr>
+			<td width="10%" align="left" nowrap="nowrap">上岛时间：</td>
+			<td><input type="text" name="data[re_toIslandTime]" id="re_toIslandTime" class="Wdate" value="{$record.re_toIslandTime}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" /></td>
+		</tr>
+		<tr>
+			<td width="10%" align="left" nowrap="nowrap">离岛时间：</td>
+			<td><input type="text" name="data[re_leaveIslandTime]" id="re_leaveIslandTime" class="Wdate" value="{$record.re_leaveIslandTime}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" /></td>
+		</tr>
+		<tr>
+			<td width="10%" align="left" nowrap="nowrap">离开仙本那时间：</td>
+			<td><input type="text" name="data[re_departureTime]" id="re_departureTime" class="Wdate" value="{$record.re_departureTime}" onclick="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" /></td>
+		</tr>
+		<tr>
+			<td width="10%" align="left" nowrap="nowrap">送机服务：</td>
+			<td><input type="text" name="data[re_toAirpostService]" id="re_toAirpostService" class="txt_1" value="{$record.re_toAirpostService}" />
+			</td>
+		</tr>
+		<tr>
+			<td width="10%" align="left" nowrap="nowrap">返程航班号：</td>
+			<td><input type="text" name="data[re_departureFlight]" id="re_departureFlight" class="txt_1" value="{$record.re_departureFlight}" />
+			</td>
 		</tr>
 		<tr>
 			<td width="10%" align="left" nowrap="nowrap">状态：</td>

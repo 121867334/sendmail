@@ -26,8 +26,13 @@ function sendEmail(obj)
 <table width="100%" cellpadding="3" cellspacing="0" class="table">
 	<tr>
 		<th width="10" nowrap="nowrap"><input type="checkbox" onclick="chooseAll(this,'id_cls')" /></th>
-		<th align="left">名称</th>
-		<th align="left">日期</th>
+		<th align="left">订单号</th>
+		<th align="left">客户名称</th>
+		<th align="left">出发航班</th>
+		<th align="left">出发日期</th>
+		<th align="left">目的地</th>
+		<th align="left">返程航班</th>
+		<th align="left">返程日期</th>
 		<th align="left">邮箱</th>
 		<th align="left">状态</th>
 		<th align="left">操作</th>
@@ -36,8 +41,13 @@ function sendEmail(obj)
 	<!--{foreach $list as $val}-->
 	<tr id="tr_{$val.re_id}">
 		<td><input type="checkbox" name="re_id[]" value="{$val.re_id}" class="id_cls" /></td>
-		<td align="left">{$val.re_name}</td>
-		<td align="left">{$val.re_date}</td>
+		<td align="left">{$val.re_confNumber}</td>
+		<td align="left">{$val.re_customer}</td>
+		<td align="left">{$val.re_arrivalFlight}</td>
+		<td align="left">{$val.re_arrivalTime}</td>
+		<td align="left">{$val.re_arrivalPlace}</td>
+		<td align="left">{$val.re_departureFlight}</td>
+		<td align="left">{$val.re_departureTime}</td>
 		<td align="left">{$val.re_email}</td>
 		<td align="left">{if $val.re_status}有效{else}无效{/if}</td>
 		<td align="left"><a href="index.php?c=Travel&a=add&re_id={$val.re_id}">编辑</a></td>
