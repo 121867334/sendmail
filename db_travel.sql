@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2017 年 08 月 14 日 18:08
+-- 生成日期: 2017 年 10 月 06 日 18:34
 -- 服务器版本: 5.5.40
 -- PHP 版本: 5.2.17
 
@@ -92,6 +92,7 @@ CREATE TABLE IF NOT EXISTS `tra_record` (
   `re_mlyTel` varchar(255) NOT NULL COMMENT '马来西亚电话号码',
   `re_email` varchar(255) NOT NULL COMMENT '邮箱',
   `re_QQ` varchar(255) NOT NULL COMMENT 'QQ或者微信',
+  `re_roadLink` varchar(200) NOT NULL,
   `re_arrivalPeople` varchar(10) NOT NULL COMMENT '到达人数',
   `re_arrivalPlace` varchar(255) NOT NULL COMMENT '到达地方',
   `re_arrivalFlight` varchar(255) NOT NULL COMMENT '到达航班',
@@ -103,21 +104,23 @@ CREATE TABLE IF NOT EXISTS `tra_record` (
   `re_departureTime` datetime NOT NULL COMMENT '离开仙本那时间',
   `re_toAirpostService` varchar(255) NOT NULL COMMENT '返程送机服务',
   `re_departureFlight` varchar(255) NOT NULL COMMENT '返程航班号',
+  `re_info` text NOT NULL COMMENT '序列化的自定义字段',
   `re_remark` text NOT NULL COMMENT '备注说明',
   `re_status` tinyint(1) NOT NULL DEFAULT '1' COMMENT '状态 0无效 1有效默认',
   `re_time` datetime NOT NULL COMMENT '操作时间',
   PRIMARY KEY (`re_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- 转存表中的数据 `tra_record`
 --
 
-INSERT INTO `tra_record` (`re_id`, `re_confNumber`, `re_customer`, `re_chnTel`, `re_mlyTel`, `re_email`, `re_QQ`, `re_arrivalPeople`, `re_arrivalPlace`, `re_arrivalFlight`, `re_arrivalTime`, `re_airportService`, `re_spnHotel`, `re_toIslandTime`, `re_leaveIslandTime`, `re_departureTime`, `re_toAirpostService`, `re_departureFlight`, `re_remark`, `re_status`, `re_time`) VALUES
-(1, '1030', 'Zhang San', '', ' ', '121867334@qq.com', '旺旺：23y 火星妹', '3大', '斗湖', 'AK6266', '2017-06-26 16:45:00', 'Yes', 'Mabul Inn', '2017-04-27 08:00:00', '2017-04-27 16:00:00', '2017-04-28 18:00:00', 'Yes', 'AK6265', '', 1, '2017-06-12 15:46:36'),
-(2, '1030', 'Zhang San', '', '', '121867334@qq.com', '', '', '', '', '0000-00-00 00:00:00', '', '', '2017-04-28 08:30:00', '2017-04-28 16:00:00', '0000-00-00 00:00:00', '', '', '', 1, '2017-06-12 16:13:59'),
-(3, '', '', '', '', '', '', '', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '', 1, '0000-00-00 00:00:00'),
-(4, '1', '张保星', '18028089921', '+2893247923', 'zbx@huyi.cn', '121867334', '3', '仙本那', 'GA18923', '2017-08-11 00:00:00', '有', '仙本那国际大酒店', '2017-08-12 00:00:00', '2017-08-13 00:00:00', '2017-08-14 00:00:00', '有没有', 'AA128933', 'test', 1, '2017-08-14 17:16:46');
+INSERT INTO `tra_record` (`re_id`, `re_confNumber`, `re_customer`, `re_chnTel`, `re_mlyTel`, `re_email`, `re_QQ`, `re_roadLink`, `re_arrivalPeople`, `re_arrivalPlace`, `re_arrivalFlight`, `re_arrivalTime`, `re_airportService`, `re_spnHotel`, `re_toIslandTime`, `re_leaveIslandTime`, `re_departureTime`, `re_toAirpostService`, `re_departureFlight`, `re_info`, `re_remark`, `re_status`, `re_time`) VALUES
+(1, '1030', 'Zhang San', '', ' ', '121867334@qq.com', '旺旺：23y 火星妹', '马布岛路线', '3大', '斗湖', 'AK6266', '2017-06-26 16:45:00', 'Yes', 'Mabul Inn', '2017-04-27 08:00:00', '2017-04-27 16:00:00', '2017-04-28 18:00:00', 'Yes', 'AK6265', '', '', 1, '2017-06-12 15:46:36'),
+(2, '1030', 'Zhang San', '', '', '121867334@qq.com', '', '海洋公园路线', '', '', '', '0000-00-00 00:00:00', '', '', '2017-04-28 08:30:00', '2017-04-28 16:00:00', '0000-00-00 00:00:00', '', '', '', '', 1, '2017-06-12 16:13:59'),
+(3, 'abksldf', '1234i8989', '', '', '', '', '马布岛路线', '', '', '', '0000-00-00 00:00:00', '', '', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '', '', 0, '0000-00-00 00:00:00'),
+(4, '1', '张保星', '18028089921', '+2893247923', 'zbx@huyi.cn', '121867334', '马达京路线', '3', '仙本那', 'GA18923', '2017-08-11 00:00:00', '有', '仙本那国际大酒店', '2017-08-12 00:00:00', '2017-08-13 00:00:00', '2017-08-14 00:00:00', '有没有', 'AA128933', '', 'test', 1, '2017-08-14 17:16:46'),
+(5, '9999', '香港测试', '92389892', '', '28934@12.com', '', '海洋公园路线', '1', '22', '2223', '2017-10-06 11:53:53', '33', '333', '2017-10-06 11:54:01', '2017-10-06 11:54:14', '0000-00-00 00:00:00', '', '', '', 'test', 1, '2017-10-06 11:56:12');
 
 -- --------------------------------------------------------
 
