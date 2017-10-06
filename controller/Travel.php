@@ -14,9 +14,14 @@ class Travel_Controller extends Base_Controller {
 	{
 		//搜索条件
 		$params = $where = array();
-		$params['re_name'] = $this->input->getTrim('re_name');
-		$params['re_status'] = $this->input->getTrim('re_status');
-		if($params['re_name'] != '')$where[] = "re_name like '%".$params['re_name']."%'";
+		$params['re_confNumber'] = $this->input->getTrim('re_confNumber');
+		$params['re_customer'] = $this->input->getTrim('re_customer');
+		$params['date1'] = $this->input->getTrim('date1');
+		$params['date2'] = $this->input->getTrim('date2');
+		if($params['re_confNumber'] != '')$where[] = "re_confNumber like '%".$params['re_confNumber']."%'";
+		if($params['re_customer'] != '')$where[] = "re_customer like '%".$params['re_customer']."%'";
+		if($params['date1'] != '')$where[] = "re_arrivalTime >= '".$params['date1']."'";
+		if($params['date2'] != '')$where[] = "re_arrivalTime <= '".$params['date2']." 23:59:59'";
 		if($params['re_status'] != '')$where['re_status'] = $params['re_status'];
 		
 		//分页
@@ -70,6 +75,22 @@ class Travel_Controller extends Base_Controller {
 		));
 		
 		$this->output->display('Travel/add.html');
+	}
+	
+	public function view()
+	{
+		$re_id = $this->input->getIntval('re_id');
+		if($re_id)
+		{
+			$record = $this->db->table("tra_record")->field("*")->where("re_id='".$re_id."'")->getOne();
+			if(!$record)show_msg('非法操作','',5);
+		}
+		
+		$this->output->set(array(
+				'record' => $record,
+		));
+		
+		$this->output->display('Travel/view.html');
 	}
 	
 	public function sendEmail()
